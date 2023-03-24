@@ -13,6 +13,7 @@ switch($action){
         $lesPs=PointSurveillance::findAll($nom, $zoneSel);
         include('views/point_surveillance/list.php');
         break;
+        
     case 'add' :
         $mode="Ajouter";
         $lesZones=Zone::findAll();

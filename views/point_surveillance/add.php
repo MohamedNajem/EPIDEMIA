@@ -8,7 +8,7 @@
                    value='<?= $mode == "Modifier" ? $ps['nomPs'] : '' ?>'>
         </div>
         <div class="form-group">
-            <label for='idZone'> Role </label>
+            <label for='idZone'> Zone </label>
             <select name="idZone" class="form-control">
                 <?php
                 foreach ($lesZones as $zone) {

@@ -1,5 +1,14 @@
 <?php ob_start();
-session_start(); 
+
+session_start();
+if (empty($_SESSION)) {
+    header("location:http://localhost/EPIDEMIA");
+}
+if (isset($_GET['deconnexion'])) {
+    session_unset();
+    session_destroy();
+    header("location:http://localhost/EPIDEMIA");
+}
 include("models/Pays.php");
 include("models/PointSurveillance.php");
 include("models/Role.php");

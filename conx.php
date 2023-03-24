@@ -2,7 +2,36 @@
 require_once "models/DBconnexion.php";
 require_once "models/User.php";
 
+$message="";
+      $user= new User();
+
+      if(isset($_POST['valider'])){
+        $user->setEmail($_POST['email']);
+        $user->setPassword($_POST['password']);
+       
+        $user =User::findUser($user);
+        if($user==null){
+            $message = '<div class="text-white alert alert-danger">Erreur cette login n\'existe pas </div>';
+        }else{
+            session_start();
+            $_SESSION['idU'] = $user['idU'];
+            $_SESSION['nomU'] = $user['nomU'];
+            $_SESSION['prenomU'] = $user['prenomU'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['password'] = $user['password'];
+            $_SESSION['idRole'] = $user['idRole'];
+            
+          
+            header('location: index.php?uc=zone&action=list');
+        }
+       
+      }
+
+        
+          
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,27 +60,22 @@ require_once "models/User.php";
             <div class="container">
                 <div class="signup-content">
                     <div class="signup-form">
-                        <?=$message?>
+                     
                         <div class="text center">
                         <h2 class="form-title">Connexion</h2>
-                        <form method="POST" class="register-form" id="register-form">
-                            
-                            <div class="form-group">
-                                <label for="login"><i class="zmdi zmdi-account"></i></label>
-                                <input type="text" name="ut" id=".['nomR']." placeholder="Votre login"/>
+                        <form  method="post">
+                        <?=$message?>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+                                <label for="floatingInput">Email address</label>
                             </div>
-                            <div class="form-group">
-                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="" id=".['password']." placeholder="Password"/>
+                            <div class="form-floating mb-4">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                                <label for="floatingPassword">Password</label>
                             </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>Se souvenir de moi</label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="Valider" id="signup" class="form-submit" value="Se connecter"/>
-                            </div>
+                            <button type="submit" name="valider" class="btn btn-primary py-3 w-100 mb-4">Se connecter</button>
                         </form>
+                            
                         </div>
                     </div>
                     <div class="signup-image">

@@ -4,8 +4,9 @@
         <div class="col-9">
             <h2>Liste des utilisateurs</h2>
         </div>
+        <?php  if( $_SESSION['idRole'] == 1){?>
         <div class="col-3"><a href="index.php?uc=user&action=add" class='btn btn-success'><i class="fas fa-plus-circle"></i> Créer un utilisateur</a> </div>
-
+        <?php }?>
     </div>
 
     <form id="formRecherche" action="index.php?uc=user&action=list" method="post" class="border border-primary rounded p-3 mt-3 mb-3">

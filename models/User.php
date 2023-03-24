@@ -106,7 +106,7 @@ class User{
 
     public static function findAll($nom="", $role="Tous")
     {
-        $texteReq="SELECT *, u.id as numero, u.nom as 'nomUser', r.nomR as 'nomRole' FROM user u, role r WHERE u.idRole=r.idR";
+        $texteReq="SELECT *, u.id as numero, u.nom as 'nomUser', r.nomR as 'nomRole' FROM user u, role r WHERE u.idRole=r.idR ";
         if ($nom != "") {
             $texteReq .= " AND u.nom LIKE '%" . $nom . "%'";
         }
@@ -154,6 +154,13 @@ class User{
         $sql = "DELETE FROM user WHERE id = $id";
         $nb = $db->exec($sql);
         return $nb;
+    }
+    public static function findUser(User $user)
+    {
+        $db = DBConnexion::getInstance();
+        $sql = "SELECT * FROM user WHERE email = '".$user->getEmail()."' and password = '".$user->getPassword()."'";
+        $leResultat = $db->query($sql)->fetch(2);
+        return $leResultat;
     }
 
 

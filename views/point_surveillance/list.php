@@ -4,6 +4,7 @@
         <div class="col-9">
             <h2>Liste des points de surveillance</h2>
         </div>
+        
         <div class="col-3"><a href="index.php?uc=pointSurveillance&action=add" class='btn btn-success'><i class="fas fa-plus-circle"></i> Créer un point de surveillance</a> </div>
 
     </div>

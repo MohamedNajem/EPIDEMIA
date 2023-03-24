@@ -4,8 +4,9 @@
         <div class="col-9">
             <h2>Liste des pays</h2>
         </div>
+        <?php  if( $_SESSION['idRole'] == 1){?>
         <div class="col-3"><a href="index.php?uc=pays&action=add" class='btn btn-success'><i class="fas fa-plus-circle"></i> Créer un pays</a> </div>
-
+        <?php }?>
     </div>
 
     <table class="table table-hover table-striped">
